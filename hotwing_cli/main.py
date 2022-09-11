@@ -45,13 +45,15 @@ def parse(file,o,d,s,t,p,l):
     try:
         rib1 = Rib( get_config('RootChord',"Profile"), 
                     scale=get_config('RootChord',"Width"), 
-                    xy_offset=Coordinate(get_config('RootChord',"LeadingEdgeOffset"),0), 
+                    xy_offset=Coordinate(get_config('RootChord',"LeadingEdgeOffsetX"), get_config('RootChord',"LeadingEdgeOffsetY")), 
                     top_sheet=get_config('Panel',"SheetingTop"), 
                     bottom_sheet=get_config('Panel',"SheetingBottom"), 
                     front_stock=get_config('Panel',"StockLeadingEdge"), 
                     tail_stock=get_config('Panel',"StockTrailingEdge"),
                     rotation=get_config('RootChord',"Rotation"),
                     rotation_pos=get_config('RootChord',"RotationPosition"),
+                    spar_center = Coordinate(get_config('RootChord',"SparOffsetX"), get_config('RootChord',"SparOffsetY")),
+                    spar_radius = get_config('RootChord',"SparRadius")
                     )
     except IOError:
         click.echo("Error: Could not find the Root Chord file:", get_config('RootChord',"Profile"))
@@ -60,13 +62,15 @@ def parse(file,o,d,s,t,p,l):
     try:
         rib2 = Rib( get_config('TipChord',"Profile"), 
                     scale=get_config('TipChord',"Width"), 
-                    xy_offset=Coordinate(get_config('TipChord',"LeadingEdgeOffset"),0), 
+                    xy_offset=Coordinate(get_config('TipChord',"LeadingEdgeOffsetX"),get_config('TipChord',"LeadingEdgeOffsetY")), 
                     top_sheet=get_config('Panel',"SheetingTop"), 
                     bottom_sheet=get_config('Panel',"SheetingBottom"), 
                     front_stock=get_config('Panel',"StockLeadingEdge"), 
                     tail_stock=get_config('Panel',"StockTrailingEdge"),
                     rotation=get_config('TipChord',"Rotation"),
                     rotation_pos=get_config('TipChord',"RotationPosition"),
+                    spar_center = Coordinate(get_config('TipChord',"SparOffsetX"), get_config('TipChord',"SparOffsetY")),
+                    spar_radius = get_config('TipChord',"SparRadius")
                     )
     except IOError:
         click.echo("Error: Could not find the Tip Chord file:", get_config('TipChord',"Profile"))
